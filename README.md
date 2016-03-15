@@ -1,4 +1,4 @@
-# whitebox-system
+# The WhiteBox System
 ##Description
 White Box Systems is an Ottawa based company that specializes in ordering and assembling custom computers. The system allow the company to keep track of computer builds requested by customers.
 ##Requirements
