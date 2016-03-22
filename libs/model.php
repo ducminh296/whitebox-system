@@ -19,7 +19,7 @@
 		 */
 		public getInfo()
 		{
-			return $this->$info;
+			return $this->info;
 		}
 		/* updateInfo updates the customer's information
 		 * Input: new customerInfo
@@ -28,7 +28,7 @@
 		{
 			if (get_class($customerInfo) != "customerInfo")
 				return 0;
-			$this->$info = $customerInfo;
+			$this->info = $customerInfo;
 			return 1;
 		}
 		/* addProduct add a product associated with the customer
@@ -61,24 +61,63 @@
 		{
 			return $this->products;
 		}
+	}
 	class payment
 	{
+		private $info;
 		/* The constructor to create payment class
 		 * Input: none
 		 */
-		public function __construct()
+		public function __construct($info)
 		{
-
+			$this->info = $info;
+		}
+		/* updatePayment updates the payment info of the customer
+		 * Input: New payment info
+		 */
+		public updatePayment($paymentInfo)
+		{
+			if (get_class($paymentInfo) != "paymentInfo")
+				return 0;
+			$this->info = $paymentInfo;
+			return 1;
+		}
+		/* getInfo return the payment info of the customer
+		 * Input: None:
+		 * Output: payment info of the customer
+		 */
+		public getInfo()
+		{
+			return $this->info;
 		}
 	}
 	class product
 	{
+		private $info;
 		/* The constructor to create product class
 		 * Input: none
 		 */
-		public function __construct()
+		public function __construct($info)
 		{
-
+			$this->info = $info;
+		}
+		/* updateInfo update the information of the product
+		 * Input: new product info
+		 */
+		public updateInfo($productInfo)
+		{
+			if (get_class($productInfo) != "productInfo")
+				return 0;
+			$this->info = $productInfo;
+			return 1;
+		}
+		/* getInfo return the information of the product
+		 * Input: None
+		 * Output: product info of the product
+		 */
+		public getInfo()
+		{
+			return $this->info;
 		}
 	}
 	/* Datatype classses */
