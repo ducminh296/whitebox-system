@@ -128,7 +128,7 @@
 		public $name;
 		public $email;
 		public $phone;
-		public $deliveryData;
+		public $deliveryDate;
 	} 
 	class paymentInfo
 	{
