@@ -20,6 +20,7 @@
 		/* Help variable */
 		$suiteCount = 1;
 		/* Mock-Up infos */
+		/* product info */
 		$productInfo = new productInfo();
 		$productInfo->productID = 1;
 		$productInfo->buildID = 1;
@@ -36,7 +37,7 @@
 		$productInfo->invoiceNumber = "IVWB0001";
 		$productInfo->salesOrderNumber = "SWB0001";
 		$productInfo->itemSKU = "0001";
-
+		/* customer info */
 		$customerInfo = new customerInfo();
 		$customerInfo->buildID = 1;
 		$customerInfo->address = "1 ABC Drive";
@@ -44,7 +45,7 @@
 		$customerInfo->email = "john.smith@gmail.com";
 		$customerInfo->phone = "6130001111";
 		$customerInfo->deliveryDate = 'March 20 2016';
-		
+		/* Payment info */
 		$paymentInfo = new paymentInfo();
 		$paymentInfo->buildID = 1;
 		$paymentInfo->confirmation = "Confirmed";
