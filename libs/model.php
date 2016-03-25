@@ -17,14 +17,14 @@
 		/* getInfo return the information of customer
 		 * Input: none
 		 */
-		public getInfo()
+		public function getInfo()
 		{
 			return $this->info;
 		}
 		/* updateInfo updates the customer's information
 		 * Input: new customerInfo
 		 */
-		public updateInfo($customerInfo)
+		public function updateInfo($customerInfo)
 		{
 			if (get_class($customerInfo) != "customerInfo")
 				return 0;
@@ -34,7 +34,7 @@
 		/* addProduct add a product associated with the customer
 		 * Input: product
 		 */
-		public addProduct($product)
+		public function addProduct($product)
 		{
 			if (get_class($product) != "product")
 				return 0;
@@ -44,7 +44,7 @@
 		/* removeProduct remove a prodyct associated with the customer
 		 * Input: product
 		 */
-		public removeProduct($product)
+		public function removeProduct($product)
 		{
 			foreach ($this->products as $value)
 				if ($value === $product)
@@ -57,7 +57,7 @@
 		/* showProductList list all products from the product list
 		 * Input: None
 		 */
-		public showProductList()
+		public function showProductList()
 		{
 			return $this->products;
 		}
@@ -75,7 +75,7 @@
 		/* updatePayment updates the payment info of the customer
 		 * Input: New payment info
 		 */
-		public updatePayment($paymentInfo)
+		public function updatePayment($paymentInfo)
 		{
 			if (get_class($paymentInfo) != "paymentInfo")
 				return 0;
@@ -86,7 +86,7 @@
 		 * Input: None:
 		 * Output: payment info of the customer
 		 */
-		public getInfo()
+		public function getInfo()
 		{
 			return $this->info;
 		}
@@ -104,7 +104,7 @@
 		/* updateInfo update the information of the product
 		 * Input: new product info
 		 */
-		public updateInfo($productInfo)
+		public function updateInfo($productInfo)
 		{
 			if (get_class($productInfo) != "productInfo")
 				return 0;
@@ -115,7 +115,7 @@
 		 * Input: None
 		 * Output: product info of the product
 		 */
-		public getInfo()
+		public function getInfo()
 		{
 			return $this->info;
 		}
@@ -128,7 +128,7 @@
 		public $name;
 		public $email;
 		public $phone;
-		public $deliveryData;
+		public $deliveryDate;
 	} 
 	class paymentInfo
 	{
