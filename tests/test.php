@@ -10,6 +10,8 @@
 	test_payment_class();
 	test_customer_class();
 	test_database_class();
+	test_folder_class();
+	test_control_class();
 ?>
 <?php
 	/* Init Tests */
@@ -305,6 +307,14 @@
 	function test_database_class()
 	{
 
+	}
+	function test_control_class()
+	{
+
+	}
+	function test_folder_class()
+	{
+		
 	}
 ?>
 <?php
