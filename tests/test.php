@@ -279,6 +279,22 @@
 		}
 		end_case();
 		$caseCount++;
+		/* Test case 6
+		 * Test: Testing show product list
+		 */
+		start_Case($caseCount, "Testing show product list");
+		if (is_array($customer->showProductList()))
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
 		/* End test suite */
 		end_SUITE($numPass,$numFail);
 		$suiteCount++;
