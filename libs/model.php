@@ -12,7 +12,7 @@
 		{
 			if (get_class($info) != "customerInfo" || get_class($paymentInfo) != "paymentInfo" )
 			{
-				trigger_error("Customer object is not created probally.", E_USER_ERROR);
+				trigger_error("[class/customer/constructor]Customer object is not created probally.", E_USER_ERROR);
 				return null;
 			}
 			$this->info = $info;
@@ -33,7 +33,7 @@
 		{
 			if (get_class($customerInfo) != "customerInfo")
 			{
-				trigger_error("Cannot update customer info.", E_USER_ERROR);
+				trigger_error("[class/customer/updatInfo]Cannot update customer info.", E_USER_ERROR);
 				return 0;
 			}
 			$this->info = $customerInfo;
@@ -46,7 +46,7 @@
 		{
 			if (get_class($productInfo) != "productInfo")
 			{
-				trigger_error("Cannot add new product.", E_USER_ERROR);
+				trigger_error("[class/customer/addProduct]Cannot add new product.", E_USER_ERROR);
 				return 0;
 			}
 			$product = new product($productInfo);
@@ -60,7 +60,7 @@
 		{
 			if (get_class($productInfo) != "productInfo")
 			{
-				trigger_error("Cannot remove product.", E_USER_ERROR);
+				trigger_error("[class/customer/removeProduct]Cannot remove product.", E_USER_ERROR);
 				return 0;
 			}
 			foreach ($this->products as $value)
@@ -89,7 +89,7 @@
 		{
 			if (get_class($info) != "paymentInfo")
 			{
-				trigger_error("Payment object is not created probally.", E_USER_ERROR);
+				trigger_error("[class/payment/constructor]Payment object is not created probally.", E_USER_ERROR);
 				return null;
 			}
 			$this->info = $info;
@@ -101,7 +101,7 @@
 		{
 			if (get_class($paymentInfo) != "paymentInfo")
 			{
-				trigger_error("Cannot update payment info.", E_USER_ERROR);
+				trigger_error("[class/payment/updatePayment]Cannot update payment info.", E_USER_ERROR);
 				return 0;
 			}
 			$this->info = $paymentInfo;
@@ -126,7 +126,7 @@
 		{
 			if (get_class($info) != "productInfo")
 			{
-				trigger_error("Product object is not created probally.", E_USER_ERROR);
+				trigger_error("[class/product/constructor]Product object is not created probally.", E_USER_ERROR);
 				return null;
 			}
 			$this->info = $info;
@@ -138,7 +138,7 @@
 		{
 			if (get_class($productInfo) != "productInfo")
 			{
-				trigger_error("Cannot update product info.", E_USER_ERROR);
+				trigger_error("[class/product/updateInfo]Cannot update product info.", E_USER_ERROR);
 				return 0;
 			}
 			$this->info = $productInfo;
