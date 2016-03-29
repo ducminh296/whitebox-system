@@ -121,6 +121,68 @@
 	function test_payment_class()
 	{
 
+		global $suiteCount;
+		global $paymentInfo;
+		/* Start test suite */
+		start_SUITE($suiteCount, "Test payment class");
+    	$caseCount = 1;
+    	$numPass = 0;
+		$numFail = 0;
+    	/* Test cases start */
+		/* Test case 1
+		 * Test: Creating a new payment object
+		 */
+		start_Case($caseCount, "Creating a new payment object");
+		$payment = new payment($paymentInfo);
+		if (get_class($payment) == "payment")
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_Case();
+		$caseCount++;
+		/* Test case 2
+		 * Test: Check if payment info is correct
+		 */
+		start_Case($caseCount, "Check if payment info is correct");
+		if ($payment->getInfo() === $paymentInfo)
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_Case();
+		$caseCount++;
+		/* Test case 3
+		 * Test: Updaing payment info
+		 */
+		start_Case($caseCount, "Updating payment info");
+		$paymentInfo->paymentMethod = "Master Card";
+		$payment->updatePayment($paymentInfo);
+		if ($payment->getInfo() === $paymentInfo)
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_Case();
+		$caseCount++;
+		/* End test suite */
+		end_SUITE($numPass,$numFail);
+		$suiteCount++;
 	}
 	function test_customer_class()
 	{
@@ -167,6 +229,24 @@
 		}
 		end_case();
 		$caseCount++;
+		/* Test case 3
+		 * Test: Updating customer info
+		 */
+		start_Case($caseCount, "Updating customer info");
+		$customerInfo->phone = "6130002222";
+		$customer->updateInfo($customerInfo);
+		if ($customer->getInfo() === $customerInfo)
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
 		/* End test suite */
 		end_SUITE($numPass,$numFail);
 		$suiteCount++;
@@ -187,7 +267,6 @@
 	}
 	function end_SUITE($numPass, $numFail)
 	{
-		echo "<br><br>";
 		echo "----------------- ";
 		echo "<b>END SUITE: </b>";
 		echo_PASS();
@@ -197,7 +276,7 @@
 		echo ": ";
 		echo " ".$numFail." ";
 		echo "-----------------";
-		echo "<br><br>";
+		echo "<br><br><br>";
 	}
 	function start_Case($caseCount, $caseName)
 	{
