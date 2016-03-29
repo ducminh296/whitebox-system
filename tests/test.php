@@ -200,9 +200,7 @@
 		 * Test: Creating a new customer object
 		 */
 		start_Case($caseCount, "Creating a new customer object");
-		$product = new product($productInfo);
-		$products = array($product);
-		$customer = New customer($customerInfo, $paymentInfo, $products);
+		$customer = New customer($customerInfo, $paymentInfo);
 		if (get_class($customer) == "customer")
 		{
 			echo_PASS();
@@ -238,6 +236,22 @@
 		$customerInfo->phone = "6130002222";
 		$customer->updateInfo($customerInfo);
 		if ($customer->getInfo() === $customerInfo)
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
+		/* Test case 4
+		 * Test: Adding new product
+		 */
+		start_Case($caseCount, "Adding new product");
+		if ($customer->addProduct($productInfo))
 		{
 			echo_PASS();
 			$numPass++;

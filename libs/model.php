@@ -34,7 +34,7 @@
 			if (get_class($customerInfo) != "customerInfo")
 			{
 				trigger_error("Cannot update customer info.", E_USER_ERROR);
-				return null;
+				return 0;
 			}
 			$this->info = $customerInfo;
 			return 1;
@@ -47,7 +47,7 @@
 			if (get_class($productInfo) != "productInfo")
 			{
 				trigger_error("Cannot add new product.", E_USER_ERROR);
-				return null;
+				return 0;
 			}
 			$product = new product($productInfo);
 			array_push($this->products, $product);
@@ -61,7 +61,7 @@
 			if (get_class($productInfo) != "productInfo")
 			{
 				trigger_error("Cannot remove product.", E_USER_ERROR);
-				return null;
+				return 0;
 			}
 			foreach ($this->products as $value)
 				if ($value->getInfo() === $productInfo)
@@ -102,7 +102,7 @@
 			if (get_class($paymentInfo) != "paymentInfo")
 			{
 				trigger_error("Cannot update payment info.", E_USER_ERROR);
-				return null;
+				return 0;
 			}
 			$this->info = $paymentInfo;
 			return 1;
@@ -139,7 +139,7 @@
 			if (get_class($productInfo) != "productInfo")
 			{
 				trigger_error("Cannot update product info.", E_USER_ERROR);
-				return null;
+				return 0;
 			}
 			$this->info = $productInfo;
 			return 1;
