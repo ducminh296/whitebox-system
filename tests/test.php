@@ -1,5 +1,8 @@
 <?php
+	include '../libs/datatype.php';
 	include '../libs/model.php';
+	include '../libs/boundary.php';
+	include '../libs/control.php';
 	/* Contain test cases to test back-end codes */
 	/* TEST SUITES */
 	init_test();
