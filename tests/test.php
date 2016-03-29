@@ -369,6 +369,39 @@
 		}
 		end_case();
 		$caseCount++;
+		/* Test case 4
+		 * Test: retrieving customer info
+		 */
+		start_Case($caseCount, "Retrieving a customer's info");
+		$customerInfo_tc = $database->retrieveCustomer($customerInfo->buildID);
+		if ($customerInfo_tc == $customerInfo)
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
+		/* Test case 5
+		 * Test: Deleting a customer
+		 */
+		start_Case($caseCount, "Deleting a customer");
+		if ($database->deleteCustomer($customerInfo->buildID))
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
 		/* End test suite */
 		end_SUITE($numPass,$numFail);
 		$suiteCount++;

@@ -45,12 +45,37 @@
 					 	'email="'.$customerInfo->email.'", '.
 					 	'phone="'.$customerInfo->phone.'", '.
 					 	'deliveryDate="'.$customerInfo->deliveryDate.'" '.
-					 	'WHERE buildID ='.$customerInfo->buildID.';';
+					 	'WHERE buildID ='.(int)$customerInfo->buildID.';';
 			$result=$this->sqlHandler->query($query);
-			if (!$result) return 0;
-			return 1;
+			return $result;
 		}
-
+		/* deleteCustomer delete a customer from the database
+		 * Input: Customer's BuildID
+		 * Output: boolean
+		 */
+		public function deleteCustomer($buildID)
+		{
+			$query = 'DELETE FROM customers WHERE buildID ='.(int)$buildID.';';
+			$result = $this->sqlHandler->query($query);
+			return $result;
+		}
+		/* retrieveCustomer retrieve a customer's info given the buildID
+		 * Input: buildID
+		 * Output: customerInfo
+		 */
+		public function retrieveCustomer($buildID)
+		{
+			$query = 'SELECT * FROM customers WHERE buildID ='.(int)$buildID.';';
+			$result = $this->sqlHandler->query($query);
+			if (!$result) return 0;
+			$row = $result->fetch_assoc();
+			$customerInfo = new CustomerInfo();
+			foreach ($row as $key => $value)
+			{
+				$customerInfo->{$key} = $value;
+			}
+			return $customerInfo;
+		}
 		/* The destructor for database class */
 		public function __destruct()
 		{
