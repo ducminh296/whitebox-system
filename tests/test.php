@@ -263,6 +263,22 @@
 		}
 		end_case();
 		$caseCount++;
+		/* Test case 5
+		 * Test: Removing a product
+		 */
+		start_Case($caseCount, "Removing a product");
+		if ($customer->removeProduct($productInfo))
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
 		/* End test suite */
 		end_SUITE($numPass,$numFail);
 		$suiteCount++;
