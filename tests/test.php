@@ -200,7 +200,9 @@
 		 * Test: Creating a new customer object
 		 */
 		start_Case($caseCount, "Creating a new customer object");
-		$customer = New customer($customerInfo, $paymentInfo, $productInfo);
+		$product = new product($productInfo);
+		$products = array($product);
+		$customer = New customer($customerInfo, $paymentInfo, $products);
 		if (get_class($customer) == "customer")
 		{
 			echo_PASS();

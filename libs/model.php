@@ -6,13 +6,18 @@
 		private $payment;
 		private $products;
 		/* The constructor to create customer class
-		 * Input: customerInfo, Payment, Array<Product> 
+		 * Input: customerInfo, PaymentInfo
 		 */
-		public function __construct($info, $payment, $products)
+		public function __construct($info, $paymentInfo)
 		{
+			if (get_class($info) != "customerInfo" || get_class($paymentInfo) != "paymentInfo" )
+			{
+				trigger_error("Customer object is not created probally.", E_USER_ERROR);
+				return null;
+			}
 			$this->info = $info;
-			$this->payment = $payment;
-			$this->products = $products;
+			$this->payment = new payment($paymentInfo);
+			$this->products = array();
 		}
 		/* getInfo return the information of customer
 		 * Input: none
@@ -27,27 +32,39 @@
 		public function updateInfo($customerInfo)
 		{
 			if (get_class($customerInfo) != "customerInfo")
-				return 0;
+			{
+				trigger_error("Cannot update customer info.", E_USER_ERROR);
+				return null;
+			}
 			$this->info = $customerInfo;
 			return 1;
 		}
 		/* addProduct add a product associated with the customer
-		 * Input: product
+		 * Input: productInfo
 		 */
-		public function addProduct($product)
+		public function addProduct($productInfo)
 		{
-			if (get_class($product) != "product")
-				return 0;
+			if (get_class($productInfo) != "productInfo")
+			{
+				trigger_error("Cannot add new product.", E_USER_ERROR);
+				return null;
+			}
+			$product = new product($productInfo);
 			array_push($this->products, $product);
 			return 1;
 		}
 		/* removeProduct remove a prodyct associated with the customer
-		 * Input: product
+		 * Input: productInfo
 		 */
-		public function removeProduct($product)
+		public function removeProduct($productInfo)
 		{
+			if (get_class($productInfo) != "productInfo")
+			{
+				trigger_error("Cannot remove product.", E_USER_ERROR);
+				return null;
+			}
 			foreach ($this->products as $value)
-				if ($value === $product)
+				if ($value->getInfo() === $productInfo)
 				{
 					unset($value);
 					return 1;
@@ -70,6 +87,11 @@
 		 */
 		public function __construct($info)
 		{
+			if (get_class($info) != "paymentInfo")
+			{
+				trigger_error("Payment object is not created probally.", E_USER_ERROR);
+				return null;
+			}
 			$this->info = $info;
 		}
 		/* updatePayment updates the payment info of the customer
@@ -78,7 +100,10 @@
 		public function updatePayment($paymentInfo)
 		{
 			if (get_class($paymentInfo) != "paymentInfo")
-				return 0;
+			{
+				trigger_error("Cannot update payment info.", E_USER_ERROR);
+				return null;
+			}
 			$this->info = $paymentInfo;
 			return 1;
 		}
@@ -99,6 +124,11 @@
 		 */
 		public function __construct($info)
 		{
+			if (get_class($info) != "productInfo")
+			{
+				trigger_error("Product object is not created probally.", E_USER_ERROR);
+				return null;
+			}
 			$this->info = $info;
 		}
 		/* updateInfo update the information of the product
@@ -107,7 +137,10 @@
 		public function updateInfo($productInfo)
 		{
 			if (get_class($productInfo) != "productInfo")
-				return 0;
+			{
+				trigger_error("Cannot update product info.", E_USER_ERROR);
+				return null;
+			}
 			$this->info = $productInfo;
 			return 1;
 		}
