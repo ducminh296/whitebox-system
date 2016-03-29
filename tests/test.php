@@ -3,6 +3,7 @@
 	include '../libs/model.php';
 	include '../libs/boundary.php';
 	include '../libs/control.php';
+	include '../libs/system.php';
 	/* Contain test cases to test back-end codes */
 	/* TEST SUITES */
 	init_test();
@@ -49,7 +50,7 @@
 		$customerInfo->name = "John Smith";
 		$customerInfo->email = "john.smith@gmail.com";
 		$customerInfo->phone = "6130001111";
-		$customerInfo->deliveryDate = 'March 20 2016';
+		$customerInfo->deliveryDate = '2016-03-29';
 		/* Payment info */
 		$paymentInfo = new paymentInfo();
 		$paymentInfo->buildID = 1;
@@ -73,7 +74,7 @@
 		 */
 		start_Case($caseCount, "Creating a new product object");
 		$product = new product($productInfo);
-		if (get_class($product) == "product")
+		if (get_class($product) == "product" && $product != null)
 		{
 			echo_PASS();
 			$numPass++;
@@ -139,7 +140,7 @@
 		 */
 		start_Case($caseCount, "Creating a new payment object");
 		$payment = new payment($paymentInfo);
-		if (get_class($payment) == "payment")
+		if (get_class($payment) == "payment" && $payment != null)
 		{
 			echo_PASS();
 			$numPass++;
@@ -206,7 +207,7 @@
 		 */
 		start_Case($caseCount, "Creating a new customer object");
 		$customer = New customer($customerInfo, $paymentInfo);
-		if (get_class($customer) == "customer")
+		if (get_class($customer) == "customer" && $customer != null)
 		{
 			echo_PASS();
 			$numPass++;
@@ -306,7 +307,71 @@
 	}
 	function test_database_class()
 	{
-
+		global $suiteCount;
+		global $productInfo;
+		global $paymentInfo;
+		global $customerInfo;
+		/* Start test suite */
+		start_SUITE($suiteCount, "Test database class");
+    	$caseCount = 1;
+    	$numPass = 0;
+		$numFail = 0;
+    	/* Test cases start */
+		/* Test case 1
+		 * Test: Creating a new database class 
+		 */
+		start_Case($caseCount, "Creating a new database object");
+		$database = New database();
+		if (get_class($database) == "database" && $database != null)
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
+		/* Test case 2
+		 * Test: Adding new customer into database
+		 */
+		start_Case($caseCount, "Adding new customer into database");
+		$buildID = $database->createNewCustomer();
+		$customerInfo->buildID = $buildID;
+		if ($buildID)
+		{
+			echo "BuildID = $buildID  - ";
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
+		/* Test case 3
+		 * Test: Updating customer info
+		 */
+		start_Case($caseCount, "Updating customer info");
+		if ($database->updateCustomerInfo($customerInfo))
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
+		/* End test suite */
+		end_SUITE($numPass,$numFail);
+		$suiteCount++;
 	}
 	function test_control_class()
 	{
