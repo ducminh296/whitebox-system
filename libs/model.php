@@ -3,20 +3,20 @@
 	class customer 
 	{
 		private $info;
-		private $payment;
+		private $payments;
 		private $products;
 		/* The constructor to create customer class
 		 * Input: customerInfo, PaymentInfo
 		 */
-		public function __construct($info, $paymentInfo)
+		public function __construct($info)
 		{
-			if (get_class($info) != "customerInfo" || get_class($paymentInfo) != "paymentInfo" )
+			if (get_class($info) != "customerInfo")
 			{
 				trigger_error("[class/customer/constructor]Customer object is not created probally.", E_USER_ERROR);
 				return null;
 			}
 			$this->info = $info;
-			$this->payment = new payment($paymentInfo);
+			$this->payments = array();
 			$this->products = array();
 		}
 		/* getInfo return the information of customer
@@ -38,6 +38,45 @@
 			}
 			$this->info = $customerInfo;
 			return 1;
+		}
+		/* addPayment add a payment associated with the customer
+		 * Input: paymentInfo
+		 */
+		public function addPayment($paymentInfo)
+		{
+			if (get_class($paymentInfo) != "paymentInfo")
+			{
+				trigger_error("[class/customer/addPayment]Cannot add new payment.", E_USER_ERROR);
+				return 0;
+			}
+			$payment = new payment($paymentInfo);
+			array_push($this->payments, $payment);
+			return 1;
+		}
+		/* removePayment remove a payment associated with the customer
+		 * Input: paymentInfo
+		 */
+		public function removePayment($paymentInfo)
+		{
+			if (get_class($paymentInfo) != "paymentInfo")
+			{
+				trigger_error("[class/customer/removePayment] Cannot remove payment.", E_USER_ERROR);
+				return 0;
+			}
+			foreach ($this->payments as $key => $value)
+				if ($value->getInfo() === $paymentInfo)
+				{
+					unset($this->payments[$key]);
+					return 1;
+				}
+			return 0;
+		}
+		/* showPaymentList list all payments from the payment List
+		 * Input: None
+		 */
+		public function showPaymentList()
+		{
+			return $this->payments;
 		}
 		/* addProduct add a product associated with the customer
 		 * Input: productInfo
@@ -63,10 +102,10 @@
 				trigger_error("[class/customer/removeProduct]Cannot remove product.", E_USER_ERROR);
 				return 0;
 			}
-			foreach ($this->products as $value)
+			foreach ($this->products as $key => $value)
 				if ($value->getInfo() === $productInfo)
 				{
-					unset($value);
+					unset($this->products[$key]);
 					return 1;
 				}
 			return 0;

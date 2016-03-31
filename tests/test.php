@@ -206,7 +206,7 @@
 		 * Test: Creating a new customer object
 		 */
 		start_Case($caseCount, "Creating a new customer object");
-		$customer = New customer($customerInfo, $paymentInfo);
+		$customer = New customer($customerInfo);
 		if (get_class($customer) == "customer" && $customer != null)
 		{
 			echo_PASS();
@@ -254,11 +254,12 @@
 		end_case();
 		$caseCount++;
 		/* Test case 4
-		 * Test: Adding new product
+		 * Test: Adding new payment
 		 */
-		start_Case($caseCount, "Adding new product");
-		if ($customer->addProduct($productInfo))
+		start_Case($caseCount, "Adding new payment");
+		if ($customer->addPayment($paymentInfo))
 		{
+			var_dump($customer->showPaymentList());
 			echo_PASS();
 			$numPass++;
 		}
@@ -270,11 +271,12 @@
 		end_case();
 		$caseCount++;
 		/* Test case 5
-		 * Test: Removing a product
+		 * Test: Removing a payment
 		 */
-		start_Case($caseCount, "Removing a product");
-		if ($customer->removeProduct($productInfo))
+		start_Case($caseCount, "Removing a payment");
+		if ($customer->removePayment($paymentInfo))
 		{
+			var_dump($customer->showPaymentList());
 			echo_PASS();
 			$numPass++;
 		}
@@ -286,6 +288,56 @@
 		end_case();
 		$caseCount++;
 		/* Test case 6
+		 * Test: Testing show payment list
+		 */
+		start_Case($caseCount, "Testing show payment list");
+		if (is_array($customer->showPaymentList()))
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
+		/* Test case 7
+		 * Test: Adding new product
+		 */
+		start_Case($caseCount, "Adding new product");
+		if ($customer->addProduct($productInfo))
+		{
+			var_dump($customer->showProductList());
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
+		/* Test case 8
+		 * Test: Removing a product
+		 */
+		start_Case($caseCount, "Removing a product");
+		if ($customer->removeProduct($productInfo))
+		{
+			var_dump($customer->showProductList());
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
+		/* Test case 9
 		 * Test: Testing show product list
 		 */
 		start_Case($caseCount, "Testing show product list");

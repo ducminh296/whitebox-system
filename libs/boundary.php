@@ -76,6 +76,7 @@
 			}
 			return $customerInfo;
 		}
+		
 		/* The destructor for database class */
 		public function __destruct()
 		{
