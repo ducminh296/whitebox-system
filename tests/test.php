@@ -29,7 +29,7 @@
 		/* product info */
 		$productInfo = new productInfo();
 		$productInfo->productID = 1;
-		$productInfo->buildID = 1;
+		$productInfo->buildID = 2;
 		$productInfo->componentType = "Motherboard";
 		$productInfo->manufacturer = "ASUS";
 		$productInfo->description = "Socket 1151 Intel Z170 Chipset";
@@ -37,12 +37,12 @@
 		$productInfo->serialNumber = "AS1234";
 		$productInfo->rebateValue = "50";
 		$productInfo->price = "235";
-		$productInfo->warrantyPeriod = "2 years";
+		$productInfo->warrantyPeriod = 24;
 		$productInfo->warrantyExpiry = "March 24 2018";
 		$productInfo->invoiceDate = "March 24 2016";
 		$productInfo->invoiceNumber = "IVWB0001";
 		$productInfo->salesOrderNumber = "SWB0001";
-		$productInfo->itemSKU = "0001";
+		$productInfo->itemSKU = 3;
 		/* customer info */
 		$customerInfo = new customerInfo();
 		$customerInfo->buildID = 1;
@@ -56,7 +56,7 @@
 		$paymentInfo->buildID = 1;
 		$paymentInfo->confirmation = "Confirmed";
 		$paymentInfo->paymentMethod = "Visa";
-		$paymentInfo->totalValue = "100";
+		$paymentInfo->totalValue = 100;
 	}
 	/* Test suites starts */
 	function test_product_class() 
@@ -259,7 +259,7 @@
 		start_Case($caseCount, "Adding new payment");
 		if ($customer->addPayment($paymentInfo))
 		{
-			var_dump($customer->showPaymentList());
+			//var_dump($customer->showPaymentList());
 			echo_PASS();
 			$numPass++;
 		}
@@ -276,7 +276,7 @@
 		start_Case($caseCount, "Removing a payment");
 		if ($customer->removePayment($paymentInfo))
 		{
-			var_dump($customer->showPaymentList());
+			//var_dump($customer->showPaymentList());
 			echo_PASS();
 			$numPass++;
 		}
@@ -309,7 +309,7 @@
 		start_Case($caseCount, "Adding new product");
 		if ($customer->addProduct($productInfo))
 		{
-			var_dump($customer->showProductList());
+			//var_dump($customer->showProductList());
 			echo_PASS();
 			$numPass++;
 		}
@@ -326,7 +326,7 @@
 		start_Case($caseCount, "Removing a product");
 		if ($customer->removeProduct($productInfo))
 		{
-			var_dump($customer->showProductList());
+			//var_dump($customer->showProductList());
 			echo_PASS();
 			$numPass++;
 		}
@@ -439,6 +439,22 @@
 		end_case();
 		$caseCount++;
 		/* Test case 5
+		 * Test: Retrieving the payment list
+		 */
+		start_Case($caseCount, "Retrieving the payment list");
+		if ($database->retrievePaymentList($customerInfo->buildID))
+		{
+			echo_PASS();
+			$numPass++;
+		}
+		else
+		{
+			echo_FAIL();
+			$numFail++;
+		}
+		end_case();
+		$caseCount++;
+		/* Test case 
 		 * Test: Deleting a customer
 		 */
 		start_Case($caseCount, "Deleting a customer");

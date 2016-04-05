@@ -59,7 +59,7 @@
 			$result = $this->sqlHandler->query($query);
 			return $result;
 		}
-		/* retrieveCustomer retrieve a customer's info given the buildID
+		/* retrieveCustomer retrieves a customer's info given the buildID
 		 * Input: buildID
 		 * Output: customerInfo
 		 */
@@ -76,7 +76,38 @@
 			}
 			return $customerInfo;
 		}
-		
+		/* addPayment add a new payment to the customer's payments database
+		 * Input: paymentInfo
+		 * Output: boolean
+		 */
+		public function addPayment($paymentInfo)
+		{
+			
+			return 1;
+		}
+		/* retrievePaymentList retrieves a list of customer's payments given the buildID
+		 * Input: buildID
+		 * Output: arrayList <paymentInfo>
+		 */
+		public function retrievePaymentList($buildID)
+		{
+			$query = 'SELECT * FROM payments WHERE buildID ='.(int)$buildID.';';
+			$result = $this->sqlHandler->query($query);
+			if (!$result) return 0;
+			$row = $result->fetch_assoc();
+			// TO-DO: convert $row to arrayList <paymentInfo>
+
+			/*
+			$payments = array();
+			foreach ($row as $key => $value)
+			{
+
+				$customerInfo->{$key} = $value;
+			}
+			return $customerInfo;
+			*/
+			return $row;
+		}
 		/* The destructor for database class */
 		public function __destruct()
 		{
